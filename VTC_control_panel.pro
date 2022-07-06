@@ -19,8 +19,7 @@ HEADERS += \
     surfaceconfigview.hpp \
     surfaceinputgroupbox.hpp
 
-FORMS += \
-    mainwindow.ui
+FORMS +=
 
 TRANSLATIONS += \
     VTC_control_panel_de_DE.ts
