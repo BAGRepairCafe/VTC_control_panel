@@ -11,9 +11,9 @@ namespace VTC {
 
     QNetworkReply* XmlConnection::authenticate(QString username, QString password)
             {
-                auto authUrl = url;
+                QUrl authUrl = url;
                 authUrl.setPath("/auth/xml");
-                auto request = QNetworkRequest{authUrl};
+                QNetworkRequest request = QNetworkRequest{authUrl};
 
                 request.setRawHeader("Accept", "*/*");
                 request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -24,10 +24,6 @@ namespace VTC {
                         this, &XmlConnection::receivedAuthToken);
                 return networkAccessManager->post(request, postData.query().toStdString().c_str());
             }
-
-    XmlConnection::~XmlConnection() {
-        delete this->networkAccessManager;
-    }
 
     void XmlConnection::receivedAuthToken(QNetworkReply* reply)
     {
@@ -45,5 +41,7 @@ namespace VTC {
         }
 
         reply->deleteLater();
+        qDebug() << "disconnecting..." << disconnect(networkAccessManager, &QNetworkAccessManager::finished,
+                this, &XmlConnection::receivedAuthToken);
     }
 }

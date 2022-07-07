@@ -15,7 +15,6 @@ namespace VTC {
     public:
         XmlConnection(QUrl url, QObject* parent = nullptr);
         [[nodiscard]] QNetworkReply* authenticate(QString username, QString password);
-        ~XmlConnection();
 
     public slots:
         void receivedAuthToken(QNetworkReply* reply);
