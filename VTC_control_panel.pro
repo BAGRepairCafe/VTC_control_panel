@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,12 +12,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     surfaceconfigview.cpp \
-    surfaceinputgroupbox.cpp
+    surfaceinputgroupbox.cpp \
+    xmlconnection.cpp
 
 HEADERS += \
     mainwindow.hpp \
     surfaceconfigview.hpp \
-    surfaceinputgroupbox.hpp
+    surfaceinputgroupbox.hpp \
+    xmlconnection.hpp
 
 FORMS +=
 
