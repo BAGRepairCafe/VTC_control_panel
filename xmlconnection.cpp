@@ -1,4 +1,5 @@
 #include "xmlconnection.hpp"
+#include <QUrlQuery>
 #include <iostream>
 
 namespace VTC {
@@ -6,19 +7,22 @@ namespace VTC {
     XmlConnection::XmlConnection(QUrl url, QObject* parent)
         : QObject(parent)
         , networkAccessManager{new QNetworkAccessManager(this)}
-        , url{url}
-            {
-            }
+        , url{url} { }
 
     QNetworkReply* XmlConnection::authenticate(QString username, QString password)
             {
-                auto request = QNetworkRequest{url};
-                request.setRawHeader("user-agent", "curl/7.79.1");
-                request.setRawHeader("accept", "*/*");
+                auto authUrl = url;
+                authUrl.setPath("/auth/xml");
+                auto request = QNetworkRequest{authUrl};
+
+                request.setRawHeader("Accept", "*/*");
+                request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+                QUrlQuery postData{QPair<QString, QString>{"vertec_username", username}, QPair<QString, QString>{"password", password}};
+                request.setRawHeader("Content-Length", QString{postData.query().length()}.toStdString().c_str());
 
                 connect(networkAccessManager, &QNetworkAccessManager::finished,
                         this, &XmlConnection::receivedAuthToken);
-                return networkAccessManager->get(request);
+                return networkAccessManager->post(request, postData.query().toStdString().c_str());
             }
 
     XmlConnection::~XmlConnection() {
@@ -28,11 +32,18 @@ namespace VTC {
     void XmlConnection::receivedAuthToken(QNetworkReply* reply)
     {
         if(reply->error() == QNetworkReply::NetworkError::NoError) {
-            qDebug() << QString(reply->readAll());
-            qDebug () << "Statscode: " << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+            const int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+            if (statusCode >= 200 && statusCode < 300) {
+                basicAuthToken = QString(reply->readAll());
+                qDebug() << basicAuthToken;
+            } else {
+                qDebug() << "Statscode of Authrequest: " << statusCode;
+            }
         } else {
             qDebug() << "Error while making network request:"
                         << reply->error();
         }
+
+        reply->deleteLater();
     }
 }

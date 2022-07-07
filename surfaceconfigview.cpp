@@ -4,7 +4,7 @@
 #include <QVBoxLayout>
 
 SurfaceConfigView::SurfaceConfigView(QWidget *parent) : QWidget(parent),
-    xmlConnection{new VTC::XmlConnection{QUrl{"https://www.google.com"}, this}}
+    xmlConnection{new VTC::XmlConnection{QUrl{"https://erp-dev.brockhaus-ag.de"}, this}}
 {
 
 

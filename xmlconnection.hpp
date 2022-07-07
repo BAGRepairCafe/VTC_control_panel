@@ -11,7 +11,7 @@ namespace VTC {
     {
         QNetworkAccessManager* networkAccessManager;
         QString basicAuthToken;
-        QUrl url;
+        const QUrl url;
     public:
         XmlConnection(QUrl url, QObject* parent = nullptr);
         [[nodiscard]] QNetworkReply* authenticate(QString username, QString password);
