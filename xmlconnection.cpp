@@ -31,7 +31,6 @@ namespace VTC {
             const int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
             if (statusCode >= 200 && statusCode < 300) {
                 basicAuthToken = QString(reply->readAll());
-                qDebug() << basicAuthToken;
             } else {
                 qDebug() << "Statscode of Authrequest: " << statusCode;
             }
@@ -41,7 +40,7 @@ namespace VTC {
         }
 
         reply->deleteLater();
-        qDebug() << "disconnecting..." << disconnect(networkAccessManager, &QNetworkAccessManager::finished,
+        disconnect(networkAccessManager, &QNetworkAccessManager::finished,
                 this, &XmlConnection::receivedAuthToken);
     }
 }
