@@ -1,6 +1,6 @@
 # VTC_control_panel
 
-This is a Qt GUI to read the data of a time tracking cube <!-- TODO: Hier link zum Cube Projekt einfügen --> and send it to
+This is a Qt GUI to read the data of a [time tracking cube](https://github.com/BAGRepairCafe/TimeTrackingCube)  and send it to
 a [Vertec XML endpoint](https://www.vertec.com/de/kb/vertec-xml-schnittstelle/).
 
 ## Project Structure
