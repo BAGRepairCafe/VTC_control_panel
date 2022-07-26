@@ -1,6 +1,5 @@
 #include "settingshandler.hpp"
 #include <fstream>
-#include <iostream>
 #include <filesystem>
 
 namespace fs = std::__fs::filesystem;
@@ -15,8 +14,7 @@ SettingsHandler::SettingsHandler()
     else {
         std::ifstream settings_config(DEFAULT_DEVELOPMENT_PATH);
         if (!settings_config.is_open()) {
-            std::cerr << "Couldn't open file " << DEFAULT_DEVELOPMENT_PATH << std::endl;
-            abort();
+            throw std::runtime_error(std::string("Couldn't open existing settings file at ", DEFAULT_DEVELOPMENT_PATH));
         }
         try {
             this->settings_json = json::parse(settings_config);
@@ -26,8 +24,6 @@ SettingsHandler::SettingsHandler()
             this->create_new_settings_json_file();
         }
     }
-
-    std::cout << this->settings_json << std::endl;
 }
 
 void SettingsHandler::create_new_settings_json_file() {
@@ -37,12 +33,10 @@ void SettingsHandler::create_new_settings_json_file() {
 
 void SettingsHandler::set_default_settings_json() {
     this->settings_json = {
-        {"username", nullptr},
+        {"username", ""},
         {"save_username", false},
     };
 }
-
-
 
 void SettingsHandler::write_settings_json_to_file() {
     std::ofstream output_stream(DEFAULT_DEVELOPMENT_PATH, std::ios::binary);
@@ -51,6 +45,22 @@ void SettingsHandler::write_settings_json_to_file() {
     }
 
     output_stream << settings_json;
+}
+
+void SettingsHandler::set_username(std::string username) {
+    this->settings_json["username"] = username;
+}
+
+std::string SettingsHandler::get_username() {
+    return this->settings_json["username"].get<std::string>();
+}
+
+void SettingsHandler::set_save_username(bool save_username) {
+    this->settings_json["save_username"] = save_username;
+}
+
+bool SettingsHandler::get_save_username() {
+    return this->settings_json["save_username"].get<bool>();
 }
 
 SettingsHandler::~SettingsHandler() {
