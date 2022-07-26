@@ -13,22 +13,22 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 12.03
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp \
-    model/cubesurfaceinfo.cpp \
-    settingshandler.cpp \
-    surfaceconfigview.cpp \
-    surfaceinputgroupbox.cpp \
-    xmlconnection.cpp
+    src/main.cpp \
+    src/widgets/mainwindow.cpp \
+    src/model/cubesurfaceinfo.cpp \
+    src/io/settingshandler.cpp \
+    src/io/xmlconnection.cpp \
+    src/widgets/surfaceconfigview.cpp \
+    src/widgets/surfaceinputgroupbox.cpp
 
 HEADERS += \
-    json.hpp \
-    mainwindow.hpp \
-    model/cubesurfaceinfo.hpp \
-    settingshandler.hpp \
-    surfaceconfigview.hpp \
-    surfaceinputgroupbox.hpp \
-    xmlconnection.hpp
+    libs/json.hpp \
+    src/widgets/mainwindow.hpp \
+    src/model/cubesurfaceinfo.hpp \
+    src/io/settingshandler.hpp \
+    src/io/xmlconnection.hpp \
+    src/widgets/surfaceconfigview.hpp \
+    src/widgets/surfaceinputgroupbox.hpp
 
 FORMS +=
 

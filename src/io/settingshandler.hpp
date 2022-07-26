@@ -1,9 +1,9 @@
 #ifndef SETTINGSHANDLER_HPP
 #define SETTINGSHANDLER_HPP
 
-#include <json.hpp>
+#include "../../libs/json.hpp"
+#include "../model/cubesurfaceinfo.hpp"
 
-#include <model/cubesurfaceinfo.hpp>
 using json = nlohmann::json;
 
 class SettingsHandler

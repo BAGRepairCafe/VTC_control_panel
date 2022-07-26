@@ -4,7 +4,7 @@
 #include <QColor>
 #include <QGroupBox>
 
-#include <model/cubesurfaceinfo.hpp>
+#include "../model/cubesurfaceinfo.hpp"
 
 class SurfaceInputGroupBox : public QGroupBox
 {

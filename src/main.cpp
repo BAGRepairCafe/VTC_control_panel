@@ -1,5 +1,4 @@
-#include "mainwindow.hpp"
-#include "settingshandler.hpp"
+#include "widgets/mainwindow.hpp"
 
 #include <QApplication>
 

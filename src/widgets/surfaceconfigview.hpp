@@ -2,7 +2,7 @@
 #define SURFACECONFIGVIEW_HPP
 
 #include <QWidget>
-#include "xmlconnection.hpp"
+#include "../io/xmlconnection.hpp"
 
 class SurfaceConfigView : public QWidget
 {

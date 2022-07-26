@@ -5,7 +5,8 @@
 #include <QString>
 #include <QTime>
 #include <string>
-#include <json.hpp>
+#include "../../libs/json.hpp"
+
 using json = nlohmann::json;
 
 struct CubeSurfaceInfo

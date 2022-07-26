@@ -1,7 +1,6 @@
 #include "settingshandler.hpp"
 #include <fstream>
 #include <filesystem>
-#include <model/cubesurfaceinfo.hpp>
 
 namespace fs = std::__fs::filesystem;
 
