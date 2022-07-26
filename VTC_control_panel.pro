@@ -15,6 +15,7 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 12.03
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    model/cubesurfaceinfo.cpp \
     settingshandler.cpp \
     surfaceconfigview.cpp \
     surfaceinputgroupbox.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 HEADERS += \
     json.hpp \
     mainwindow.hpp \
+    model/cubesurfaceinfo.hpp \
     settingshandler.hpp \
     surfaceconfigview.hpp \
     surfaceinputgroupbox.hpp \
